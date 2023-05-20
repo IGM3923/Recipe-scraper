@@ -1,30 +1,6 @@
 import csv
 import random
 
-
-def user_choices(recipes):
-    while (True):
-        combined_list = []
-        meal_list = choose_meal(recipes)
-        cuisine_list = choose_cuisine(recipes)
-
-        # randomize from choices
-        combined_list = common_member(meal_list,cuisine_list)
-        if combined_list:
-            rand = random.choice(combined_list)
-            print("You should have " + rand + "!")
-            print("Click for recipe: " + recipes[rand]['url'])
-        else:
-            print("No meals found with that combination")
-
-        is_retry = input("Would you like to try again?\n"
-                         "(Y/N)\n"
-                         ">>>").lower()
-        if is_retry != "y": 
-            print("Enjoy your meal!")
-            break
-
-
 def choose_meal(recipes):
     meal_list = []
     valid_choices = ["breakfast", "lunch/dinner", "dessert", "any"]
@@ -58,6 +34,28 @@ def choose_cuisine(recipes):
 def common_member(a, b):
     result = [i for i in a if i in b]
     return result
+
+def user_choices(recipes):
+    while (True):
+        combined_list = []
+        meal_list = choose_meal(recipes)
+        cuisine_list = choose_cuisine(recipes)
+
+        # randomize from choices
+        combined_list = common_member(meal_list,cuisine_list)
+        if combined_list:
+            rand = random.choice(combined_list)
+            print("You should have " + rand + "!")
+            print("Click for recipe: " + recipes[rand]['url'])
+        else:
+            print("No meals found with that combination")
+
+        is_retry = input("Would you like to try again?\n"
+                         "(Y/N)\n"
+                         ">>>").lower()
+        if is_retry != "y": 
+            break
+    print("Enjoy your meal!")
 
 if __name__ == "__main__":
     filename = "recipes.csv"
