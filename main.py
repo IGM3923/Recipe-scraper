@@ -48,6 +48,7 @@ def user_choices(recipes):
             print("You should have " + rand + "!")
             print("Click for recipe: " + recipes[rand]['url'])
         else:
+            is_empty = True
             print("No meals found with that combination")
 
         is_retry = input("Would you like to try again?\n"
@@ -55,7 +56,9 @@ def user_choices(recipes):
                          ">>>").lower()
         if is_retry != "y": 
             break
-    print("Enjoy your meal!")
+
+    if not is_empty:
+        print("Enjoy your meal!")
 
 if __name__ == "__main__":
     filename = "recipes.csv"
@@ -67,6 +70,8 @@ if __name__ == "__main__":
                 pass
             recipes[name] = line
     user_choices(recipes)
+
+
     
 
 
