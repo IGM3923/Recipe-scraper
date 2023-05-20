@@ -13,7 +13,7 @@ def user_choices(recipes):
         if combined_list:
             rand = random.choice(combined_list)
             print("You should have " + rand + "!")
-            print(recipes[rand]['url'])
+            print("Click for recipe: " + recipes[rand]['url'])
         else:
             print("No meals found with that combination")
 
@@ -42,7 +42,7 @@ def choose_meal(recipes):
 
 def choose_cuisine(recipes):
     cuisine_list = []
-    valid_choices = ["indian", "chinese", "italian", "any"]
+    valid_choices = ["indian", "chinese", "italian", "other", "any"]
     cuisine_choice = input("What cuisine would you like?\n"
                              + str(valid_choices) + "\n" +
                             ">>>").lower()
