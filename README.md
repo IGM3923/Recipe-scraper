@@ -8,8 +8,6 @@ Improve UI
     
     - Add retry option from choices already made, currently starts over from the beginning every time
     
-    - Allow option to make multiple choices (max 3?) from cuisine category
-    
     - Create GUI
     
 Recipes
