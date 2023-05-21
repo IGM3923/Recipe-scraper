@@ -18,17 +18,19 @@ def choose_meal(recipes):
 
 def choose_cuisine(recipes):
     cuisine_list = []
-    valid_choices = ["indian", "chinese", "italian", "other", "any"]
-    cuisine_choice = input("What cuisine would you like?\n"
+    valid_choices = ["indian", "italian", "creole", "irish", "french", "mexican", "thai", "korean", "hawaiian", "middle eastern", "other", "any"]
+
+    for i in range(3):
+        cuisine_choice = input("What cuisine would you like?\n"
                              + str(valid_choices) + "\n" +
                             ">>>").lower()
-    
-    if cuisine_choice in valid_choices:
-        if cuisine_choice == "any":
-            return list(recipes.keys())
-        for r in recipes:
-            if recipes[r]['cuisine'] == cuisine_choice:
-                cuisine_list.append(r)
+        if cuisine_choice in valid_choices:
+            if cuisine_choice == "any":
+                return list(recipes.keys())
+            for r in recipes:
+                if recipes[r]['cuisine'] == cuisine_choice:
+                    cuisine_list.append(r)
+
     return cuisine_list
 
 def common_member(a, b):
@@ -36,6 +38,7 @@ def common_member(a, b):
     return result
 
 def user_choices(recipes):
+    is_empty = False
     while (True):
         combined_list = []
         meal_list = choose_meal(recipes)
@@ -52,7 +55,7 @@ def user_choices(recipes):
             print("No meals found with that combination")
 
         is_retry = input("Would you like to try again?\n"
-                         "(Y/N)\n"
+                         "['Y'/'N']\n"
                          ">>>").lower()
         if is_retry != "y": 
             break
