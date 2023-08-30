@@ -24,3 +24,5 @@ Wants
 
     - Add "I don't want to cook, I want to go somewhere" option, based on location? 
 
+    - To improve recipe list, add allrecipes webscraper
+
