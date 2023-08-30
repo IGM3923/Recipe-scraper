@@ -21,6 +21,7 @@ def choose_cuisine(recipes):
     valid_choices = ["indian", "italian", "creole", "irish", "french", "mexican", "thai", "korean", "hawaiian", "middle eastern", "other", "any"]
 
     for i in range(3):
+        # make 3 choices of cuisine type, unless "any"
         cuisine_choice = input("What cuisine would you like?\n"
                              + str(valid_choices) + "\n" +
                             ">>>").lower()
@@ -30,6 +31,7 @@ def choose_cuisine(recipes):
             for r in recipes:
                 if recipes[r]['cuisine'] == cuisine_choice:
                     cuisine_list.append(r)
+                    # add chosen cuisines to a list to return
 
     return cuisine_list
 
