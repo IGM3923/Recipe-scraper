@@ -16,24 +16,6 @@ def choose_meal(recipes):
                     meal_list.append(r)
     return meal_list
 
-def choose_cuisine(recipes):
-    cuisine_list = []
-    valid_choices = ["indian", "italian", "creole", "irish", "french", "mexican", "thai", "korean", "hawaiian", "middle eastern", "other", "any"]
-
-    for i in range(3):
-        # make 3 choices of cuisine type, unless "any"
-        cuisine_choice = input("What cuisine would you like?\n"
-                             + str(valid_choices) + "\n" +
-                            ">>>").lower()
-        if cuisine_choice in valid_choices:
-            if cuisine_choice == "any":
-                return list(recipes.keys())
-            for r in recipes:
-                if recipes[r]['cuisine'] == cuisine_choice:
-                    cuisine_list.append(r)
-                    # add chosen cuisines to a list to return
-
-    return cuisine_list
 
 def common_member(a, b):
     result = [i for i in a if i in b]
@@ -42,20 +24,13 @@ def common_member(a, b):
 def user_choices(recipes):
     is_empty = False
     while (True):
-        combined_list = []
         meal_list = choose_meal(recipes)
-        cuisine_list = choose_cuisine(recipes)
 
-        # randomize from choices
-        combined_list = common_member(meal_list,cuisine_list)
-        if combined_list:
-            rand = random.choice(combined_list)
-            print("You should have " + rand + "!")
-            print("Click for recipe: " + recipes[rand]['url'])
-        else:
-            is_empty = True
-            print("No meals found with that combination")
-
+        # randomize from choice
+        rand = random.choice(meal_list)
+        print("You should have " + rand + "!")
+        print("Click for recipe: " + recipes[rand]['url'])
+       
         is_retry = input("Would you like to try again?\n"
                          "['Y'/'N']\n"
                          ">>>").lower()
