@@ -57,7 +57,6 @@ def main():
     # build_scraper()
     # clean_scraper_results()
     
-    
 
 if __name__ == "__main__":
     main()
