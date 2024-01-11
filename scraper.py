@@ -1,6 +1,7 @@
 import requests 
 from bs4 import BeautifulSoup
 import pandas as pd
+import re
 
 def build_scraper():
     offsets = [0, 24, 48, 72, 96, 120, 144, 168, 192, 216, 240, 
@@ -28,9 +29,29 @@ def build_scraper():
 def clean_scraper_results():
     # some cleaning is done manually
     # recategorize
-    dessert_keywords = ['Brownie']
-    df = pd.read_csv("test.csv")      
-    print(df['meal'].drop_duplicates().to_list())
+    df = pd.read_csv("test.csv")   
+    meal_names = (df['meal'].to_list())
+
+    dessert_keywords = ['Brownie', 'Dessert', 'Cake', 'Cupcake', 'Muffin', 'Sweet', 'Drink', 'Cookie', 'Pudding', 
+                        'Chocolate', 'Cinnamon Roll', 'Snickerdoodle', 'Smoothie', 'Banana', 'Tart', 'Cheesecake',
+                        'Blondie', 'Doughnuts']   
+    for i, meal in enumerate(meal_names):
+        for word in dessert_keywords:
+            if word in meal:
+                meal_names[i] = "dessert"
+
+    breakfast_keywords = ['Waffle', 'Pancake', 'Oatmeal', 'Breakfast', 'Quiche', 'Granola', 'French Toast', 'Biscuits']
+    for i, meal in enumerate(meal_names):
+        for word in breakfast_keywords:
+            if word in meal:
+                meal_names[i] = "breakfast"
+
+    for i, meal in enumerate(meal_names):
+        if "dessert" not in meal and "breakfast" not in meal:
+            meal_names[i] = "lunch/dinner"
+
+    df['meal'] = meal_names   
+    df.to_csv("test2.csv", index=False)
 
 def main():
     clean_scraper_results()
