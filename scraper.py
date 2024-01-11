@@ -54,7 +54,10 @@ def clean_scraper_results():
     df.to_csv("test2.csv", index=False)
 
 def main():
-    clean_scraper_results()
+    # build_scraper()
+    # clean_scraper_results()
+    
+    
 
 if __name__ == "__main__":
     main()
